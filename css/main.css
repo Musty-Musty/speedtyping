@@ -116,8 +116,7 @@ img {
   margin-bottom: 2rem;
 }
 
-video {
-  width: 100%;
+.video {
   border: 2px solid rgb(110, 147, 153);
   border-radius: 1%;
 }
