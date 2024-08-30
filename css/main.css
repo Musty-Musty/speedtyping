@@ -1,0 +1,594 @@
+:root{
+	--def-transition-duration: 0.5s;
+}
+
+html{
+	overflow-x: hidden;
+	font-family: "Tajawal", sans-serif;  
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1.2rem;
+}
+
+body{
+	background-color: rgb(184, 224, 244);
+	overflow-x: hidden;
+}
+
+/*%%%%%%%% Header %%%%%%%*/
+
+/* Drop Down Menu */
+#hero{
+	background-color: rgb(110, 147, 153);
+	height: 50vh;
+	padding-top: 3rem;
+	box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.2), 
+        -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+
+}
+
+#logo{
+	font-size: 2.2rem;
+	text-decoration: none;
+	color: #fff;
+	font-weight: 500;
+	transition: font-size;
+}
+
+#logo:hover{
+	font-size: 2.3rem;
+}
+
+#main-header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 90%;
+	margin: 0 auto;
+}
+
+nav ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+	gap: 3rem;
+}
+
+nav ul a{
+	text-decoration: none;
+	color: #fff;
+	font-size: 1.2rem;
+	display: inline-block;
+	padding: 1.2rem 0;
+	transition-property: color;
+}
+
+nav ul a:hover{
+	color: #fff;
+}
+
+.lessons{
+	position: relative;
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.lessons::after{
+	content: url('icons/icon-arrow-down.svg');
+	opacity: 0.6;
+	height: 25px;
+	transition-property: opacity;
+}
+
+.lessons ul{
+	position: absolute;
+	top: 100%;
+	left: -2rem;
+	background-color: rgb(132, 166, 172);
+	border-radius: 0.5rem;
+	display: block;
+	opacity: 0;
+	visibility: hidden;
+	transform: translate(-1rem);
+	transition-property: opacity, visibility, transform;
+}
+
+.lessons:hover ul{
+	opacity: 1;
+	visibility: visible;
+	transform: translate(0);
+}
+
+.lessons ul a{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 1rem;
+	min-width: 15rem;
+	border-radius: 0.5rem;
+	transition-property: background-color, padding;
+}
+
+.lessons ul a::after{
+	content: url('icons/icon-arrow-right.svg');
+	height: 17px;
+	opacity: 0;
+	transition-property: opacity;
+}
+
+.lessons ul a:hover{
+	background-color: rgb(155, 189, 196);
+	padding: 1rem 1.5rem;
+}
+
+.lessons ul a:hover::after{
+	opacity: 1;
+}
+
+.lessons:hover::after{
+	opacity: 1;
+}
+
+.lessons:hover > a{
+	color: #e8e8e8;
+}
+
+#logo,
+nav ul a,
+.lessons::after,
+.lessons ul,
+.lessons ul a,
+.lessons ul a::after{
+	transition-duration: var(--def-transition-duration);
+	transition-timing-function: ease-in-out;
+}
+
+/* Media Queries */
+@media (max-width: 540px) {
+	#logo{
+		font-size: 1.2rem;
+	}
+
+	#logo:hover{
+		font-size: 1.3rem;
+	}
+}
+
+@media (max-width: 1080.5px) {
+	.lessons,
+	.lessons ul{
+		display: none;
+	}	
+}
+
+@media (min-width: 541px) and (max-width: 960px) {
+	#logo{
+		font-size: 1.6rem;
+	}
+
+	#logo:hover{
+		font-size: 1.7rem;
+	}
+}
+
+@media (min-width: 801px) and (max-width: 1120px) {
+	#logo{
+		font-size: 2rem;
+	}
+
+	#logo:hover{
+		font-size: 2.1rem;
+	}
+
+}
+
+/*%%%%%%% Hero End %%%%%%%*/
+
+/*********************************************************************************/
+/*********************************************************************************/
+
+/*%%%%%%% Humbergur Menu %%%%%%%*/
+
+.lightbox {
+	visibility: hidden;
+	opacity: 0;
+	display: table;
+	z-index: 4;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(184, 224, 244);
+	backdrop-filter: blur(5px);
+	box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.lightbox-content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2rem;
+}
+
+:root[menu-open] .lightbox {
+	height: 100%;
+	visibility: visible;
+	opacity: 1;
+}
+
+.button {
+	appearance: none;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+} 
+
+.menu-display{
+	z-index: 10;
+	position: relative;
+}
+
+#menu-button {
+	display: flex;
+	flex-direction: column;
+	gap: 3.5px;
+	width: 2.5rem;
+	height: 2.5rem;
+	align-items: center;
+	justify-content: center;
+}
+
+#menu-button span {
+	width: 25px;
+	height: 2.5px;
+	background-color: white;
+	border-radius: 2px;
+	transition: transform .3s ease-in-out, opacity .3s ease-in-out, background-color .5s ease-in-out;
+}
+
+:root[menu-open] #menu-button span:nth-child(1) {
+	transform: translate3d(0, 6px, 0) rotate(45deg);
+}
+
+:root[menu-open] #menu-button span:nth-child(2) {
+	transform: scale(0);
+	opacity: 0;
+}
+
+:root[menu-open] #menu-button span:nth-child(3) {
+	transform: translate3d(0, -6px, 0) rotate(-45deg);
+}
+
+@media (min-width: 1080px) {
+	.menu-display {
+		display: none;
+	}
+}
+
+/*%%%%%%% Humbergur Menu End %%%%%%%*/
+
+/*********************************************************************************/
+/*********************************************************************************/
+
+/*%%%%%%% Accordion %%%%%%%*/
+
+.accordion{
+	width: 50%;
+}
+
+.accord-main-list{
+	margin: 19px 0;
+	padding: 0;
+}
+
+label{
+	color: white;
+	width: 100%;
+}
+
+.accordion li{
+	list-style: none;
+	margin: 0.6rem 0;
+	padding: 0.6rem 0;
+	border-radius: 8px;
+	background-color: rgb(132, 166, 172)
+}
+
+label::before{
+	content: '+';
+	padding: 10px;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+input[type="radio"]{
+	display: none;
+}
+
+.accordion .content{
+	display: flex;
+	width: 100%;
+	padding: 10px 0;
+	line-height: 26px;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height, padding;
+}
+
+.content a{
+	text-decoration: none;
+	color: white;
+}
+
+.lesson-list{
+	width: 100%;
+	padding: 0;
+}
+
+.lesson-list li{
+	margin: 0.6rem 0;
+	padding: 0.6rem;
+}
+
+.lesson-list li:hover{
+	background-color: rgb(155, 189, 196);
+	padding: 0.8rem;
+	font-size: 22px;
+	transition: background-color, padding, font-size;
+}
+
+
+
+.accordion input[type="radio"]:checked + label + .content {
+	max-height: fit-content;
+}
+
+.accordion input[type="radio"]:checked + label::before {
+	content: '-';
+}
+
+.lesson-list li,
+.accordion .content{
+	transition-duration: var(--def-transition-duration);
+	transition-timing-function: ease-in-out;
+}
+
+@media (min-width: 0px) and (max-width: 540px){
+	.accord-content a {
+		font-size: 14px;
+	}
+
+	label {
+		font-size: 18px;
+	}
+}
+
+@media (min-width: 541px) and (max-width: 800px){
+	.contain {
+		width: 60%;
+	}
+}
+
+@media (min-width: 361px) and (max-width: 540px){
+	.contain {
+		width: 80%;
+	}
+}
+
+@media (min-width: 0px) and (max-width: 360px){
+	.contain {
+		width: 100%;
+	}
+}
+
+/*%%%%%%% Accordion End %%%%%%%*/
+
+/*********************************************************************************/
+/*********************************************************************************/
+
+/*%%%%%%% Body Content %%%%%%%*/
+
+.lessons-bg-color{
+	background-color: rgb(198, 227, 243); 
+	border-right: 2px solid;
+	border-left: 2px solid; 
+	border-color: rgb(110, 147, 153);
+	box-shadow: 6px 0px 10px -1px rgba(0, 0, 0, 0.2)
+}
+
+img{
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+video{
+	width: 100%;
+	border: 2px solid rgb(110, 147, 153);
+	border-radius: 1%;
+}
+
+input {
+	width: 100%;
+	margin-bottom: 10px;
+	border-width: 2px;
+	border-radius: 4px;
+	border-color: rgb(110, 147, 153);
+	border-style: solid;
+}
+
+input:focus {
+	transform: scale(1.01);
+}
+
+h1, h2 {
+	color: rgb(55, 55, 251);
+}
+
+p {
+	margin-bottom: 0.2rem;
+	margin-top: 10px;
+	padding-right: 0.3rem;
+	font-weight: 500;
+}
+
+img {
+	width: 100%;
+	height: auto;
+}
+
+.blue {
+	color: blue;
+}
+
+.blue1 {
+	color: blue;
+	font-size: 40px;
+}
+
+@media (min-width: 0px) and (max-width: 540px) {
+
+	.blue1 {
+		font-size: 25px;
+	}
+
+}
+
+.red {
+	color: red;
+}
+
+.page-introduction {
+	color: rgb(24, 21, 21);
+	font-size: 1.5rem;
+	font-family: "Tajawal", sans-serif; 
+	font-weight: 200;
+	font-style: normal; 
+	text-align: justify;
+}
+
+.first-heading {
+	color: blue;
+}
+
+
+/* *Media query */
+
+@media (min-width: 0px) and (max-width: 540px) {
+	.page-introduction {
+		font-size: 1rem;
+		padding: 1rem;   
+	}
+
+	p,
+	input {
+		font-size: 0.7rem;  
+	}
+
+	.blue1 {
+		font-size: 1px;
+	}
+
+	.web-heading{
+		font-size: 2rem;
+	}	
+
+}
+
+@media (min-width: 366px) and (max-width: 449.5px) {
+	.logo {
+		font-size: 1.5rem;
+	}
+}
+
+@media (min-width: 0px) and (max-width: 365.5px) {
+	.logo {
+		font-size: 1rem;
+	}
+}
+
+@media (min-width: 541px) and (max-width: 770px) {
+	.page-introduction {
+		font-size: 1.3rem;
+		padding: 1rem; 
+	}
+
+	p,
+	input {
+		font-size: 1rem;  
+	}
+
+	.web-heading {
+		font-size: 2rem;
+	}		
+
+}
+
+/* To hide the three buttons on this range */
+@media (min-width: 0px) and (max-width: 1099.95px) {
+	.dropdown-menu {
+		display: none;
+	}
+
+}
+
+/*%%%%%%% Body End %%%%%%%*/
+
+/*********************************************************************************/
+/*********************************************************************************/
+
+/*%%%%%%% Footer %%%%%%%*/
+footer {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	color: #fff;
+	background: rgb(110, 147, 153);
+	align-items: center;
+	text-align: center;
+	padding-block: 4rem;
+	box-shadow: 6px 0px 10px -1px rgba(0, 0, 0, 0.3)
+}
+
+footer a:hover {
+	color: #fff;
+}
+
+.footer__content {
+	width: 80%;
+	display: flex;
+	align-content: space-between;
+	justify-content: space-between;
+}
+
+.btn {
+	appearance: none;
+	border: none;
+	background: transparent;
+	color: #fff;
+	font-size: 1rem;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	transition: gap .2s ease-in-out;
+	cursor: pointer;
+	padding: 0.5rem 1rem;
+}
+
+.btn:hover {
+	gap: 1rem;
+}
+
+@media (max-width: 540px) {
+	.btn {
+		font-size: 14px;
+	}
+}
+
+/*%%%%%%% Footer End %%%%%%%*/
+
+/*********************************************************************************/
+/*********************************************************************************/
